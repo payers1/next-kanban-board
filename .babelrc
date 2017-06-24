@@ -1,0 +1,15 @@
+{
+  "presets": [ "next/babel" ],
+  "plugins": [
+    "inline-react-svg",
+    ["import", {
+      "libraryName": "antd"
+    }],
+    ["css-modules-transform", {
+      "extensions": [".scss"],
+      "devMode": true,
+      "extractCss": "./static/css/bundle.css",
+      "preprocessCss": "./pre-processor.js"
+    }]
+  ]
+}
