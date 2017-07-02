@@ -7,6 +7,12 @@ const spec = {
     return {
       id: props.id
     }
+  },
+
+  endDrag({moveCard}, monitor, component) {
+    const item = monitor.getItem();
+    const dropResult = monitor.getDropResult();
+    moveCard();
   }
 }
 

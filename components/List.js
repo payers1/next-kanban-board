@@ -3,9 +3,13 @@ import { Types } from '../constants'
 import Card from './Card';
 
 const spec = {
-  hover(props, monitor, component) {
+  drop(props) {
+    return {
+      id: props.listName
+    }
+  },
 
-  }
+  hover(props, monitor, component) {}
 };
 
 const collect = (connect, monitor) => {
@@ -50,7 +54,7 @@ const List = (props) => {
     <div>
       <div className='list-header'> {props.listName} </div>
       {props.cards.map(card => {
-        return <Card />
+        return <Card moveCard={props.moveCard} id={card.id} />
       })}
     </div>
   </div>)
