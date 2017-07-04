@@ -10,9 +10,13 @@ const spec = {
   },
 
   endDrag({moveCard}, monitor, component) {
+      if (!monitor.didDrop()) {
+      return;
+    }
+
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
-    moveCard();
+    moveCard(item.id, dropResult.id);
   }
 }
 
@@ -34,7 +38,7 @@ class Card extends Component {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 300px;
+            // min-width: 80px;
             height: 100px;
             margin-bottom: 8px;
             background: white;
@@ -44,7 +48,7 @@ class Card extends Component {
             visibility: hidden;
           }
         `}</style>
-      <div className={`card ${isDragging && 'dragging'}`} id={this.props.id}> CARD </div>
+      <div className={`card ${isDragging && 'dragging'}`} id={this.props.id}> CARD {this.props.id} </div>
       </div>
     )
   }

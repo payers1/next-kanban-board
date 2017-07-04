@@ -4,12 +4,13 @@ import Card from './Card';
 
 const spec = {
   drop(props) {
+    console.log(props);
     return {
-      id: props.listName
+      id: props.listId
     }
   },
 
-  hover(props, monitor, component) {}
+  // hover(props, monitor, component) {}
 };
 
 const collect = (connect, monitor) => {
@@ -25,7 +26,7 @@ const List = (props) => {
       <style jsx>{`
           .list {
             flex-grow: 1;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             width: 325px;
             min-height: 95vh;
             margin-right: 12px;
@@ -38,7 +39,7 @@ const List = (props) => {
             align-items: flex-start;
           }
           .is-over {
-            background: blue;
+            /*background: blue;*/
           }
 
           .list-header {
@@ -54,7 +55,7 @@ const List = (props) => {
     <div>
       <div className='list-header'> {props.listName} </div>
       {props.cards.map(card => {
-        return <Card moveCard={props.moveCard} id={card.id} />
+        return <Card moveCard={props.moveCard} id={card.id} listId={card.listId} />
       })}
     </div>
   </div>)
