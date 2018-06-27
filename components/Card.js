@@ -1,6 +1,22 @@
 import { Component } from 'react'
 import { DragSource } from 'react-dnd'
 import { Types } from '../constants'
+import css from 'styled-jsx/css'
+
+const style = css`
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 8px;
+    background: white;
+    box-shadow: 0px 1px 1px lightgray;
+  }
+  .dragging {
+    visibility: hidden;
+  }
+`
 
 const spec = {
   beginDrag(props, monitor, component) {
@@ -20,36 +36,18 @@ const spec = {
   }
 }
 
-const collect = (connect, monitor) => {
-  return {
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-    connectDragPreview: connect.dragPreview()
-  }
-}
+const collect = (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging(),
+  connectDragPreview: connect.dragPreview()
+})
 
 class Card extends Component {
   render() {
-    const { connectDragSource, isDragging, connectDragPreview, id } = this.props
+    const { connectDragSource, isDragging, id } = this.props
     return connectDragSource(
       <div>
-        <style jsx>
-          {`
-            .card {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              // min-width: 80px;
-              height: 100px;
-              margin-bottom: 8px;
-              background: white;
-              box-shadow: 0px 1px 1px lightgray;
-            }
-            .dragging {
-              visibility: hidden;
-            }
-          `}
-        </style>
+        <style jsx>{style}</style>
         <div className={`card ${isDragging && 'dragging'}`} id={id}>
           CARD {id}
         </div>
